@@ -10,6 +10,7 @@ const mimeUtils = require('./mime-utils.js').mime;
 const Note = require('./models/Note').default;
 const Resource = require('./models/Resource').default;
 const urlValidator = require('valid-url');
+const Setting = require('./models/Setting').default;
 const { _ } = require('./locale');
 const http = require('http');
 const https = require('https');
@@ -238,7 +239,7 @@ function shimInit(sharp = null, keytar = null, React = null, appVersion = null) 
 
 		const targetPath = Resource.fullPath(resource);
 
-		if (options.resizeLargeImages !== 'never' && ['image/jpeg', 'image/jpg', 'image/png'].includes(resource.mime)) {
+		if (options.resizeLargeImages !== 'never' && ['image/jpeg', 'image/jpg', 'image/png'].includes(resource.mime) && !Setting.value('image.noresizing')) {
 			const ok = await handleResizeImage_(filePath, targetPath, resource.mime, options.resizeLargeImages);
 			if (!ok) return null;
 		} else {
