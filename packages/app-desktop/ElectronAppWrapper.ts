@@ -3,7 +3,7 @@ import { PluginMessage } from './services/plugins/PluginRunner';
 import shim from '@joplin/lib/shim';
 import { isCallbackUrl } from '@joplin/lib/callbackUrlUtils';
 
-import { BrowserWindow, Tray, screen } from 'electron';
+import { BrowserWindow, Tray, screen, globalShortcut } from 'electron';
 import bridge from './bridge';
 const url = require('url');
 const path = require('path');
@@ -454,6 +454,15 @@ export default class ElectronAppWrapper {
 		return false;
 	}
 
+	public toggleWindowVisilibity() {
+		if (this.win_.isVisible()) {
+			this.win_.hide();
+		} else {
+			this.win_.setVisibleOnAllWorkspaces(true);
+			this.win_.show();
+		}
+	}
+
 	public async start() {
 		// Since we are doing other async things before creating the window, we might miss
 		// the "ready" event. So we use the function below to make sure that the app is ready.
@@ -464,8 +473,17 @@ export default class ElectronAppWrapper {
 
 		this.createWindow();
 
+		const registerGlobalShortcut = globalShortcut.register('CommandOrControl+Alt+J', () => {
+			this.toggleWindowVisilibity();
+		});
+
+		if (!registerGlobalShortcut) {
+			console.warn('Could not register global shortcut');
+		}
+
 		this.electronApp_.on('before-quit', () => {
 			this.willQuitApp_ = true;
+			globalShortcut.unregisterAll();
 		});
 
 		this.electronApp_.on('window-all-closed', () => {
