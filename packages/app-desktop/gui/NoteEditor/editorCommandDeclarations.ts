@@ -124,6 +124,10 @@ const declarations: CommandDeclaration[] = [
 		label: () => _('Swap line down'),
 	},
 	{
+		name: 'editor.delWrappedLineLeft',
+		label: () => _('Delete the part of the line before the cursor.'),
+	},
+	{
 		name: 'selectedText',
 	},
 	{

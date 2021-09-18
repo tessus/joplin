@@ -568,6 +568,7 @@ function useMenu(props: Props) {
 						menuItemDic['editor.indentMore'],
 						menuItemDic['editor.swapLineDown'],
 						menuItemDic['editor.swapLineUp'],
+						menuItemDic['editor.delWrappedLineLeft'],
 						separator(),
 						menuItemDic.focusSearch,
 						menuItemDic.showLocalSearch,

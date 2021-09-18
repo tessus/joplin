@@ -44,6 +44,7 @@ export default function() {
 		'editor.sortSelectedLines',
 		'editor.swapLineUp',
 		'editor.swapLineDown',
+		'editor.delWrappedLineLeft',
 		'toggleSafeMode',
 		'showShareNoteDialog',
 		'showShareFolderDialog',

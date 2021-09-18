@@ -54,6 +54,7 @@ const defaultKeymapItems = {
 		{ accelerator: 'Option+Cmd+A', command: 'editor.sortSelectedLines' },
 		{ accelerator: 'Option+Up', command: 'editor.swapLineUp' },
 		{ accelerator: 'Option+Down', command: 'editor.swapLineDown' },
+		{ accelerator: 'Cmd+Backspace', command: 'editor.delWrappedLineLeft' },
 	],
 	default: [
 		{ accelerator: 'Ctrl+N', command: 'newNote' },
