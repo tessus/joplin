@@ -1,5 +1,5 @@
 import { DefaultPluginsInfo } from '../PluginService';
-import Setting from '../../../models/Setting';
+// import Setting from '../../../models/Setting';
 
 const getDefaultPluginsInfo = (): DefaultPluginsInfo => {
 	const defaultPlugins = {};
